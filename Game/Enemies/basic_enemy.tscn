@@ -1,26 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm0guegno6rlg"]
+[gd_scene load_steps=9 format=3 uid="uid://dm0guegno6rlg"]
 
 [ext_resource type="Script" path="res://Game/Enemies/basic_enemy.gd" id="1_gihld"]
 [ext_resource type="Texture2D" uid="uid://p8h5d7dffvao" path="res://Assets/Enemies/rat_grey.png" id="1_v0ygm"]
+[ext_resource type="PackedScene" uid="uid://dhve58dr0knfv" path="res://Game/Components/health_component.tscn" id="2_4xpoh"]
+[ext_resource type="PackedScene" uid="uid://dcjtt0vpc3u75" path="res://Game/Components/vial_drop_component.tscn" id="3_at4xw"]
+[ext_resource type="PackedScene" uid="uid://4aw3ccnacw45" path="res://Game/Items/experience_vial.tscn" id="4_iygoe"]
+[ext_resource type="PackedScene" uid="uid://d3igtrxoayfi7" path="res://Game/Components/hurt_box_component.tscn" id="5_bje2a"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8dd1a"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5nhvm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhy3d"]
 radius = 5.0
 
 [node name="BasicEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_gihld")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 8
+[node name="HealthComponent" parent="." instance=ExtResource("2_4xpoh")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_at4xw")]
+vial_scene = ExtResource("4_iygoe")
+health_component = NodePath("../HealthComponent")
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_bje2a")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_8dd1a")
+shape = SubResource("CircleShape2D_5nhvm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_v0ygm")
@@ -29,5 +38,3 @@ offset = Vector2(0, -4)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_xhy3d")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

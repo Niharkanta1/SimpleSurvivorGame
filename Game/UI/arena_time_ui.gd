@@ -5,7 +5,8 @@
 
 extends CanvasLayer
 
-@export var arena_time_manager: Node
+@export var arena_time_manager: ArenaTimeManager
+
 @onready var label = $%Label
 
 
