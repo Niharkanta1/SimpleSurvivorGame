@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm0guegno6rlg"]
+
+[ext_resource type="Script" path="res://Game/Enemies/basic_enemy.gd" id="1_gihld"]
+[ext_resource type="Texture2D" uid="uid://p8h5d7dffvao" path="res://Assets/Enemies/rat_grey.png" id="1_v0ygm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8dd1a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xhy3d"]
+radius = 5.0
+
+[node name="BasicEnemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_gihld")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_8dd1a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_v0ygm")
+offset = Vector2(0, -4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_xhy3d")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
