@@ -11,7 +11,6 @@ const MAX_SPEED = 200
 func _ready() -> void:
 	pass
 
-
 func _physics_process(_delta: float) -> void:
 	var move_vector = get_movement_vector()
 	var dir = move_vector.normalized()
