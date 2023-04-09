@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb0mhu6vw0vdu"]
+
+[ext_resource type="Script" path="res://Game/Managers/enemy_spawn_manager.gd" id="1_qflqn"]
+[ext_resource type="PackedScene" uid="uid://dm0guegno6rlg" path="res://Game/Enemies/basic_enemy.tscn" id="2_a1xit"]
+
+[node name="EnemySpawnManager" type="Node"]
+script = ExtResource("1_qflqn")
+basic_enemy_scene = ExtResource("2_a1xit")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
