@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl7h25ugbu5r"]
+
+[ext_resource type="Script" path="res://Game/Ability/axe_ability_controller.gd" id="1_jp6y3"]
+
+[node name="AxeAbilityController" type="Node"]
+script = ExtResource("1_jp6y3")
