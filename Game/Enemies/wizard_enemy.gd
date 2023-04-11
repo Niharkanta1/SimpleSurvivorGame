@@ -4,7 +4,7 @@
 #
 
 extends CharacterBody2D
-class_name BasicEnemy
+class_name WizardEnemy
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var visuals: Node2D = $Visuals
@@ -18,4 +18,6 @@ func _physics_process(delta: float) -> void:
 	var move_sign = sign(velocity.x)
 	if move_sign != 0:
 		visuals.scale = Vector2(move_sign, 1)
+
+
 

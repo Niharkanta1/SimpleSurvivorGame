@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://rq52ne14lo71"]
+
+[ext_resource type="Script" path="res://Game/Components/death_component.gd" id="1_1u25a"]
+[ext_resource type="Texture2D" uid="uid://p8h5d7dffvao" path="res://Assets/Enemies/rat_grey.png" id="1_y8lrf"]
+
+[sub_resource type="Curve" id="Curve_l7qrq"]
+_data = [Vector2(0, 0.936364), 0.0, 0.504545, 0, 0, Vector2(0.540541, 0.909091), -1.45309, -1.45309, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_psjjy"]
+curve = SubResource("Curve_l7qrq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ll6p"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+gravity = Vector3(0, 800, 0)
+initial_velocity_min = 175.0
+initial_velocity_max = 250.0
+angular_velocity_min = -1440.0
+angular_velocity_max = 1440.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_psjjy")
+
+[sub_resource type="Animation" id="Animation_uucrd"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7f4rl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_266ow"]
+_data = {
+"RESET": SubResource("Animation_7f4rl"),
+"default": SubResource("Animation_uucrd")
+}
+
+[node name="DeathComponent" type="Node2D"]
+script = ExtResource("1_1u25a")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_4ll6p")
+texture = ExtResource("1_y8lrf")
+lifetime = 0.5
+one_shot = true
+fixed_fps = 0
+interpolate = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_266ow")
+}

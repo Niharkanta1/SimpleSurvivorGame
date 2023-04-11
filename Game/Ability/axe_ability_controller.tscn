@@ -8,7 +8,7 @@ script = ExtResource("1_jp6y3")
 axe_ability_scene = ExtResource("2_iodjr")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 4.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

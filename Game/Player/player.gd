@@ -10,6 +10,8 @@ class_name Player
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var healh_bar_ui: ProgressBar = $HealthBarUI
 @onready var abilities: Node = $Abilities
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var visuals: Node2D = $Visuals
 
 const MAX_SPEED = 125
 const ACCELERATION_SMOOTHING = 25
@@ -28,6 +30,14 @@ func _physics_process(delta: float) -> void:
 	var target_velocity = dir * MAX_SPEED
 	velocity = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
 	move_and_slide()
+	if move_vector.x != 0 or move_vector.y != 0:
+		animation_player.play("walk")
+	else:
+		animation_player.play("RESET")
+	
+	var move_sign = sign(move_vector.x)
+	if move_sign != 0:
+		visuals.scale = Vector2(move_sign, 1)
 
 
 func check_deal_damage() -> void:
