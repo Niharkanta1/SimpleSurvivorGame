@@ -9,6 +9,7 @@ class_name Player
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var healh_bar_ui: ProgressBar = $HealthBarUI
+@onready var abilities: Node = $Abilities
 
 const MAX_SPEED = 125
 const ACCELERATION_SMOOTHING = 25
@@ -18,6 +19,7 @@ var colliding_body_count = 0
 
 func _ready() -> void:
 	update_health_bar_ui()
+	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
 
 
 func _physics_process(delta: float) -> void:
@@ -58,3 +60,10 @@ func _on_damage_interval_timer_timeout() -> void:
 
 func _on_health_component_health_changed() -> void:
 	update_health_bar_ui()
+
+
+func _on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary) -> void:
+	if not upgrade is Ability:
+		return
+	var ability_controller = (upgrade as Ability).ability_controller_scene.instantiate()
+	abilities.add_child(ability_controller)

@@ -32,9 +32,9 @@ script = ExtResource("1_746l6")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_b0f1t")]
 
-[node name="AbilityManager" type="Node" parent="."]
+[node name="Abilities" type="Node" parent="."]
 
-[node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_k24in")]
+[node name="SwordAbilityController" parent="Abilities" instance=ExtResource("2_k24in")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_26q02")
