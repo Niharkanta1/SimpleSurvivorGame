@@ -28,6 +28,10 @@ func accelerate_in_direction(direction: Vector2) -> void:
 	velocity = velocity.lerp(desired_velocity, 1 - exp(-acceleration * get_physics_process_delta_time()))
 	
 
+func decelerate() -> void:
+	accelerate_in_direction(Vector2.ZERO)
+
+
 func move(character: CharacterBody2D) -> void:
 	character.velocity = velocity
 	character.move_and_slide()
