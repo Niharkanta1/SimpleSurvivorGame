@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dm0guegno6rlg"]
+[gd_scene load_steps=17 format=3 uid="uid://dm0guegno6rlg"]
 
 [ext_resource type="Script" path="res://Game/Enemies/basic_enemy.gd" id="1_gihld"]
 [ext_resource type="Texture2D" uid="uid://p8h5d7dffvao" path="res://Assets/Enemies/rat_grey.png" id="1_v0ygm"]
@@ -6,8 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://dcjtt0vpc3u75" path="res://Game/Components/vial_drop_component.tscn" id="3_at4xw"]
 [ext_resource type="PackedScene" uid="uid://4aw3ccnacw45" path="res://Game/Items/experience_vial.tscn" id="4_iygoe"]
 [ext_resource type="PackedScene" uid="uid://d3igtrxoayfi7" path="res://Game/Components/hurt_box_component.tscn" id="5_bje2a"]
+[ext_resource type="PackedScene" uid="uid://dfyfp67mvfw5c" path="res://Game/Components/hit_flash_component.tscn" id="6_mp15e"]
 [ext_resource type="PackedScene" uid="uid://rq52ne14lo71" path="res://Game/Components/death_component.tscn" id="7_oyip4"]
+[ext_resource type="Shader" path="res://Game/Components/hit_flash_component.gdshader" id="7_yncva"]
 [ext_resource type="Script" path="res://VelocityComponent.gd" id="8_jiagk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1nhah"]
+resource_local_to_scene = true
+shader = ExtResource("7_yncva")
+shader_parameter/lerp_percent = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5nhvm"]
 
@@ -115,6 +122,11 @@ drop_chance = 0.35
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("8_jiagk")
+
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_mp15e")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_1nhah")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_oyip4")]
 health_component = NodePath("../HealthComponent")

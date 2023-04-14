@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://5q0xd3sl5uyi"]
+
+[ext_resource type="Script" path="res://Game/UI/floating_text.gd" id="1_0f574"]
+
+[node name="FloatingText" type="Node2D"]
+script = ExtResource("1_0f574")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 32)
+offset_left = -49.0
+offset_top = -15.0
+offset_right = 51.0
+offset_bottom = 17.0
+theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
+theme_override_constants/outline_size = 2
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cw6dcfkp2sl8b"]
+[gd_scene load_steps=17 format=3 uid="uid://cw6dcfkp2sl8b"]
 
 [ext_resource type="Script" path="res://Game/Enemies/wizard_enemy.gd" id="1_nlyvi"]
 [ext_resource type="PackedScene" uid="uid://dhve58dr0knfv" path="res://Game/Components/health_component.tscn" id="1_uxtpp"]
@@ -8,6 +8,52 @@
 [ext_resource type="PackedScene" uid="uid://d3igtrxoayfi7" path="res://Game/Components/hurt_box_component.tscn" id="4_cg5t6"]
 [ext_resource type="PackedScene" uid="uid://dcjtt0vpc3u75" path="res://Game/Components/vial_drop_component.tscn" id="4_fw8ta"]
 [ext_resource type="PackedScene" uid="uid://4aw3ccnacw45" path="res://Game/Items/experience_vial.tscn" id="5_j5v08"]
+[ext_resource type="PackedScene" uid="uid://dfyfp67mvfw5c" path="res://Game/Components/hit_flash_component.tscn" id="6_6usgh"]
+[ext_resource type="Shader" path="res://Game/Components/hit_flash_component.gdshader" id="7_07v6t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26sou"]
+resource_local_to_scene = true
+shader = ExtResource("7_07v6t")
+shader_parameter/lerp_percent = 0.0
+
+[sub_resource type="Animation" id="Animation_idl18"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_awdwg"]
 resource_name = "walk"
@@ -68,45 +114,6 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_idl18"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/Sprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_50lpi"]
 _data = {
 "RESET": SubResource("Animation_idl18"),
@@ -134,6 +141,11 @@ acceleration = 2.0
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_fw8ta")]
 vial_scene = ExtResource("5_j5v08")
 health_component = NodePath("../HealthComponent")
+
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_6usgh")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_26sou")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("2_a856n")]
 health_component = NodePath("../HealthComponent")
