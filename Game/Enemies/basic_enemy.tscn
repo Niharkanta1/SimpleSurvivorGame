@@ -11,7 +11,7 @@
 [ext_resource type="Shader" path="res://Game/Components/hit_flash_component.gdshader" id="7_yncva"]
 [ext_resource type="Script" path="res://VelocityComponent.gd" id="8_jiagk"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1nhah"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5fexb"]
 resource_local_to_scene = true
 shader = ExtResource("7_yncva")
 shader_parameter/lerp_percent = 0.0
@@ -126,7 +126,7 @@ script = ExtResource("8_jiagk")
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_mp15e")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_1nhah")
+hit_flash_material = SubResource("ShaderMaterial_5fexb")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_oyip4")]
 health_component = NodePath("../HealthComponent")

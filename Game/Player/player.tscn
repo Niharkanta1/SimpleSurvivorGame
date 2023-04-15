@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Game/Player/player.gd" id="1_746l6"]
 [ext_resource type="PackedScene" uid="uid://dhve58dr0knfv" path="res://Game/Components/health_component.tscn" id="2_b0f1t"]
 [ext_resource type="PackedScene" uid="uid://85topbm4k1kn" path="res://Game/Ability/sword_ability_controller.tscn" id="2_k24in"]
+[ext_resource type="Script" path="res://VelocityComponent.gd" id="3_lps1p"]
 
 [sub_resource type="Animation" id="Animation_stacr"]
 length = 0.001
@@ -94,16 +95,13 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_unv51"]
 radius = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0auo"]
-bg_color = Color(0.247059, 0.14902, 0.192157, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxb8d"]
 bg_color = Color(0.262745, 0.882353, 0.701961, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
+border_color = Color(0.247059, 0.14902, 0.192157, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4q6e"]
 radius = 32.0
@@ -117,6 +115,11 @@ motion_mode = 1
 script = ExtResource("1_746l6")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_b0f1t")]
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("3_lps1p")
+max_speed = 90
+acceleration = 25.0
 
 [node name="Abilities" type="Node" parent="."]
 
@@ -145,7 +148,6 @@ offset_top = -24.0
 offset_right = 16.0
 offset_bottom = -18.0
 pivot_offset = Vector2(16, 3)
-theme_override_styles/background = SubResource("StyleBoxFlat_k0auo")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xxb8d")
 max_value = 1.0
 value = 0.5

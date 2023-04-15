@@ -6,30 +6,30 @@
 extends CharacterBody2D
 class_name Player
 
-@onready var health_component: HealthComponent = $HealthComponent
+@onready var health_component := $HealthComponent as HealthComponent
+@onready var velocity_component := $VelocityComponent as VelocityComponent
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var healh_bar_ui: ProgressBar = $HealthBarUI
 @onready var abilities: Node = $Abilities
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var visuals: Node2D = $Visuals
 
-const MAX_SPEED = 125
-const ACCELERATION_SMOOTHING = 25
-
 var colliding_body_count = 0
+var base_move_speed = 0
 
 
 func _ready() -> void:
+	base_move_speed = velocity_component.max_speed
 	update_health_bar_ui()
 	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
-
+	
 
 func _physics_process(delta: float) -> void:
 	var move_vector = get_movement_vector()
 	var dir = move_vector.normalized()
-	var target_velocity = dir * MAX_SPEED
-	velocity = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
-	move_and_slide()
+	velocity_component.accelerate_in_direction(dir)
+	velocity_component.move(self)
+
 	if move_vector.x != 0 or move_vector.y != 0:
 		animation_player.play("walk")
 	else:
@@ -69,11 +69,13 @@ func _on_damage_interval_timer_timeout() -> void:
 
 
 func _on_health_component_health_changed() -> void:
+	GameEvents.emit_player_damaged()
 	update_health_bar_ui()
 
 
 func _on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary) -> void:
-	if not upgrade is Ability:
-		return
-	var ability_controller = (upgrade as Ability).ability_controller_scene.instantiate()
-	abilities.add_child(ability_controller)
+	if upgrade is Ability:
+		var ability_controller = (upgrade as Ability).ability_controller_scene.instantiate()
+		abilities.add_child(ability_controller)
+	elif upgrade.id == "move_speed":
+		velocity_component.max_speed = base_move_speed + base_move_speed * current_upgrades["move_speed"]["quantity"] * 0.1
