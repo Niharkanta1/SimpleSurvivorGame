@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cw6dcfkp2sl8b"]
+[gd_scene load_steps=23 format=3 uid="uid://cw6dcfkp2sl8b"]
 
 [ext_resource type="Script" path="res://Game/Enemies/wizard_enemy.gd" id="1_nlyvi"]
 [ext_resource type="PackedScene" uid="uid://dhve58dr0knfv" path="res://Game/Components/health_component.tscn" id="1_uxtpp"]
@@ -10,8 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://4aw3ccnacw45" path="res://Game/Items/experience_vial.tscn" id="5_j5v08"]
 [ext_resource type="PackedScene" uid="uid://dfyfp67mvfw5c" path="res://Game/Components/hit_flash_component.tscn" id="6_6usgh"]
 [ext_resource type="Shader" path="res://Game/Components/hit_flash_component.gdshader" id="7_07v6t"]
+[ext_resource type="PackedScene" uid="uid://byf140baa26ie" path="res://Game/Components/random_audio_player_component.tscn" id="11_lyrdk"]
+[ext_resource type="AudioStream" uid="uid://dxt46uvynpjm6" path="res://Assets/Sound/SFX/footstep_carpet_000.ogg" id="12_2lea3"]
+[ext_resource type="AudioStream" uid="uid://8pc808oiohjn" path="res://Assets/Sound/SFX/footstep_carpet_001.ogg" id="13_n8jrp"]
+[ext_resource type="AudioStream" uid="uid://cho7p0x0iuxca" path="res://Assets/Sound/SFX/footstep_carpet_002.ogg" id="14_3b5fl"]
+[ext_resource type="AudioStream" uid="uid://djnmaykgojl1v" path="res://Assets/Sound/SFX/footstep_carpet_003.ogg" id="15_6pbtv"]
+[ext_resource type="AudioStream" uid="uid://cxx3n786vd4im" path="res://Assets/Sound/SFX/footstep_carpet_004.ogg" id="16_x0yx0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_26sou"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ague"]
 resource_local_to_scene = true
 shader = ExtResource("7_07v6t")
 shader_parameter/lerp_percent = 0.0
@@ -145,7 +151,7 @@ health_component = NodePath("../HealthComponent")
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_6usgh")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_26sou")
+hit_flash_material = SubResource("ShaderMaterial_8ague")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("2_a856n")]
 health_component = NodePath("../HealthComponent")
@@ -173,3 +179,6 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_qj166")
+
+[node name="HitAudioPlayerComponent" parent="." instance=ExtResource("11_lyrdk")]
+streams = Array[AudioStream]([ExtResource("12_2lea3"), ExtResource("13_n8jrp"), ExtResource("14_3b5fl"), ExtResource("15_6pbtv"), ExtResource("16_x0yx0")])

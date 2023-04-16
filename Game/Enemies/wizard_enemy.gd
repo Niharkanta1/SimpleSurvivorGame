@@ -12,6 +12,11 @@ class_name WizardEnemy
 
 var is_moving: bool
 
+
+func _ready() -> void:
+	$HurtBoxComponent.hit.connect(_on_hit)
+
+
 func _physics_process(delta: float) -> void:
 	if is_moving:
 		velocity_component.accelerate_to_player()
@@ -26,3 +31,5 @@ func _physics_process(delta: float) -> void:
 func set_is_moving(moving: bool) -> void:
 	is_moving = moving
 
+func _on_hit() -> void:
+	$HitAudioPlayerComponent.play_random()

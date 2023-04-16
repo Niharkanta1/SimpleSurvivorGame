@@ -71,7 +71,8 @@ func _on_damage_interval_timer_timeout() -> void:
 func _on_health_component_health_changed() -> void:
 	GameEvents.emit_player_damaged()
 	update_health_bar_ui()
-
+	$RandomAudioPlayerComponent.play_random()
+	
 
 func _on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary) -> void:
 	if upgrade is Ability:

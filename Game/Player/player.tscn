@@ -1,10 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://phmox48gey57"]
+[gd_scene load_steps=19 format=3 uid="uid://phmox48gey57"]
 
 [ext_resource type="Texture2D" uid="uid://bxscmga4ovdy8" path="res://Assets/Player/player1.png" id="1_26q02"]
 [ext_resource type="Script" path="res://Game/Player/player.gd" id="1_746l6"]
 [ext_resource type="PackedScene" uid="uid://dhve58dr0knfv" path="res://Game/Components/health_component.tscn" id="2_b0f1t"]
 [ext_resource type="PackedScene" uid="uid://85topbm4k1kn" path="res://Game/Ability/sword_ability_controller.tscn" id="2_k24in"]
 [ext_resource type="Script" path="res://VelocityComponent.gd" id="3_lps1p"]
+[ext_resource type="PackedScene" uid="uid://byf140baa26ie" path="res://Game/Components/random_audio_player_component.tscn" id="6_htifl"]
+[ext_resource type="AudioStream" uid="uid://dx1lvy7xoe887" path="res://Assets/Sound/SFX/impactMining_000.ogg" id="7_kn2u8"]
+[ext_resource type="AudioStream" uid="uid://tjndj0dybyly" path="res://Assets/Sound/SFX/impactMining_001.ogg" id="8_5u42e"]
+[ext_resource type="AudioStream" uid="uid://cftx881ed8eou" path="res://Assets/Sound/SFX/impactMining_002.ogg" id="9_pt0q7"]
+[ext_resource type="AudioStream" uid="uid://cflt0ui6nc5bn" path="res://Assets/Sound/SFX/impactMining_003.ogg" id="10_75dor"]
+[ext_resource type="AudioStream" uid="uid://bm1t8pf0ealod" path="res://Assets/Sound/SFX/impactMining_004.ogg" id="11_vniun"]
 
 [sub_resource type="Animation" id="Animation_stacr"]
 length = 0.001
@@ -174,6 +180,9 @@ debug_color = Color(0.796078, 0.411765, 0.286275, 0.419608)
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="RandomAudioPlayerComponent" parent="." instance=ExtResource("6_htifl")]
+streams = Array[AudioStream]([ExtResource("7_kn2u8"), ExtResource("8_5u42e"), ExtResource("9_pt0q7"), ExtResource("10_75dor"), ExtResource("11_vniun")])
 
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

@@ -6,6 +6,8 @@
 extends Area2D
 class_name HurtBoxComponent
 
+signal hit
+
 @export var health_component: HealthComponent
 
 var floating_text_scene = preload("res://Game/UI/floating_text.tscn")
@@ -30,3 +32,4 @@ func _on_area_entered(area: Area2D) -> void:
 		floating_text.start("%0.1f" % hitbox.damage)
 	else:
 		floating_text.start(str(hitbox.damage))
+	hit.emit()
