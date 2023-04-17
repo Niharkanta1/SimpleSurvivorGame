@@ -1,35 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://qe7o6vl32m02"]
+[gd_scene load_steps=16 format=3 uid="uid://qe7o6vl32m02"]
 
 [ext_resource type="Script" path="res://Game/UI/ability_upgrade_card.gd" id="1_sx3jg"]
-
-[sub_resource type="Animation" id="Animation_44h4d"]
-resource_name = "in"
-length = 0.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
+[ext_resource type="PackedScene" uid="uid://cciyjiw65okby" path="res://Game/Components/ui_audio_player_component.tscn" id="2_2lpqh"]
+[ext_resource type="AudioStream" uid="uid://fuxckttyhw37" path="res://Assets/Sound/UI Sound/switch3.ogg" id="3_7683b"]
+[ext_resource type="AudioStream" uid="uid://lomfyabv53vm" path="res://Assets/Sound/UI Sound/switch1.ogg" id="3_kyncs"]
+[ext_resource type="AudioStream" uid="uid://cdqpmchahtoos" path="res://Assets/Sound/UI Sound/switch2.ogg" id="4_0s48n"]
+[ext_resource type="AudioStream" uid="uid://dqby4g2vhc3l1" path="res://Assets/Sound/UI Sound/switch5.ogg" id="4_ob5c8"]
+[ext_resource type="AudioStream" uid="uid://6dym5l6ngplq" path="res://Assets/Sound/UI Sound/switch4.ogg" id="7_xrxnv"]
 
 [sub_resource type="Animation" id="Animation_bvy6g"]
 length = 0.001
@@ -70,6 +47,52 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_xcato"]
+resource_name = "discard"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_44h4d"]
+resource_name = "in"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_kkq2n"]
 resource_name = "selected"
 length = 0.5
@@ -98,22 +121,19 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, -0.0872665, 0.0872665, 0.0]
 }
-
-[sub_resource type="Animation" id="Animation_xcato"]
-resource_name = "discard"
-length = 0.15
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0)]
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ClickAudioPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_random"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ali43"]
@@ -122,6 +142,21 @@ _data = {
 "discard": SubResource("Animation_xcato"),
 "in": SubResource("Animation_44h4d"),
 "selected": SubResource("Animation_kkq2n")
+}
+
+[sub_resource type="Animation" id="Animation_s6xok"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_i1hi5"]
@@ -140,20 +175,19 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, -0.0872665, 0.0872665, 0.0]
 }
-
-[sub_resource type="Animation" id="Animation_s6xok"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HoverAudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"values": [{
+"args": [],
+"method": &"play_random"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wm4yr"]
@@ -216,3 +250,10 @@ theme_override_colors/font_outline_color = Color(0.14902, 0.168627, 0.266667, 1)
 theme_override_constants/outline_size = 4
 text = "This is the Description. "
 autowrap_mode = 2
+
+[node name="HoverAudioPlayer" parent="." instance=ExtResource("2_2lpqh")]
+volume_db = -12.0
+streams = Array[AudioStream]([ExtResource("3_7683b"), ExtResource("4_ob5c8")])
+
+[node name="ClickAudioPlayer" parent="." instance=ExtResource("2_2lpqh")]
+streams = Array[AudioStream]([ExtResource("3_kyncs"), ExtResource("4_0s48n"), ExtResource("7_xrxnv")])

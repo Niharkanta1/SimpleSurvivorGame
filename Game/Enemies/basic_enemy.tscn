@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://djnmaykgojl1v" path="res://Assets/Sound/SFX/footstep_carpet_003.ogg" id="15_g71lp"]
 [ext_resource type="AudioStream" uid="uid://cxx3n786vd4im" path="res://Assets/Sound/SFX/footstep_carpet_004.ogg" id="16_qtmhd"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir3td"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0welt"]
 resource_local_to_scene = true
 shader = ExtResource("7_yncva")
 shader_parameter/lerp_percent = 0.0
@@ -132,7 +132,7 @@ script = ExtResource("8_jiagk")
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_mp15e")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_ir3td")
+hit_flash_material = SubResource("ShaderMaterial_0welt")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_oyip4")]
 health_component = NodePath("../HealthComponent")

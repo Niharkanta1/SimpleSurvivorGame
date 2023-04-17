@@ -10,6 +10,8 @@ class_name EndScreen
 
 
 func _ready() -> void:
+	$%RestartButton.pressed.connect(_on_restart_button_pressed)
+	$%QuitButton.pressed.connect(_on_quit_button_pressed)
 	panel_container.pivot_offset = panel_container.size / 2
 	var tween = create_tween()
 	tween.tween_property(panel_container, "scale", Vector2.ZERO, 0)
@@ -21,11 +23,20 @@ func _ready() -> void:
 func set_defeat() -> void:
 	$%TitleLabel.text = "Defeat"
 	$%DescriptionLabel.text = "You Lost!"
+	play_jingle(true)
 
 
 func set_victory() -> void:
 	$%TitleLabel.text = "Victory"
 	$%DescriptionLabel.text = "You Won!"
+	play_jingle(false)
+
+
+func play_jingle(defeat: bool) -> void:
+	if defeat:
+		$DefeatStreamPlayer.play()
+	else:
+		$VictoryStreamPlayer.play()
 
 
 func _on_restart_button_pressed() -> void:

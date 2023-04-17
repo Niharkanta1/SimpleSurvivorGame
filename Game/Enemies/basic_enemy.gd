@@ -9,8 +9,6 @@ class_name BasicEnemy
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var visuals: Node2D = $Visuals
 @onready var velocity_component := $VelocityComponent as VelocityComponent
-@onready var hit_audio_player_component := $HitAudioPlayerComponent as RandomAudioPlayerComponent
-
 
 
 func _ready() -> void:
@@ -27,4 +25,4 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hit() -> void:
-	hit_audio_player_component.play_random()
+	$HitAudioPlayerComponent.play_random()

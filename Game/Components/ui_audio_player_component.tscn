@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cciyjiw65okby"]
+
+[ext_resource type="Script" path="res://Game/Components/ui_audio_player_component.gd" id="1_5xh6w"]
+
+[node name="UIAudioPlayerComponent" type="AudioStreamPlayer"]
+bus = &"SFX"
+script = ExtResource("1_5xh6w")
