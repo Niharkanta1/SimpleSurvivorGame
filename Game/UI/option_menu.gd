@@ -40,6 +40,11 @@ func set_bus_volume_percent(bus_name: String, percent: float) -> void:
 	var vouume_db: float = linear_to_db(percent)
 	AudioServer.set_bus_volume_db(bus_index, vouume_db)
 
+
+func transition_effect() -> void:
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
+
 	
 func _on_window_button_pressed() -> void:
 	var mode = DisplayServer.window_get_mode()
@@ -55,4 +60,5 @@ func _on_audio_slider_changed(value: float, bus_name: String) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	transition_effect()
 	back_pressed.emit()

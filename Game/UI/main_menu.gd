@@ -14,11 +14,18 @@ func _ready() -> void:
 	$%QuitButton.pressed.connect(_on_quit_pressed)
 	
 
+func transition_effect() -> void:
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
+	
+
 func _on_play_pressed() -> void:
+	transition_effect()
 	get_tree().change_scene_to_file("res://Game/main.tscn")
 	
 
 func _on_options_pressed() -> void:
+	transition_effect()
 	var options_scene_instance = options_scene.instantiate()
 	add_child(options_scene_instance)
 	options_scene_instance.back_pressed.connect(_on_options_back_pressed.bind(options_scene_instance))

@@ -32,6 +32,11 @@ func set_victory() -> void:
 	play_jingle(false)
 
 
+func transition_effect() -> void:
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
+
+
 func play_jingle(defeat: bool) -> void:
 	if defeat:
 		$DefeatStreamPlayer.play()
@@ -40,6 +45,7 @@ func play_jingle(defeat: bool) -> void:
 
 
 func _on_restart_button_pressed() -> void:
+	transition_effect()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Game/main.tscn")
 
