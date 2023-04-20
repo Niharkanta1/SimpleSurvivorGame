@@ -37,3 +37,4 @@ func _on_timer_timeout() -> void:
 	var screen_instance = end_screen_scene.instantiate() as EndScreen
 	add_child(screen_instance)
 	screen_instance.set_victory()
+	MetaProgresion.save()

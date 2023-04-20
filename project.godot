@@ -12,6 +12,8 @@ config_version=5
 
 config/name="SimpleSurvivor"
 run/main_scene="res://Game/UI/main_menu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="SimpleSurvivor"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +22,7 @@ config/icon="res://icon.svg"
 GameEvents="*res://Game/Autoloads/game_events.tscn"
 MusicPlayer="*res://Game/Autoloads/music_player.tscn"
 ScreenTransition="*res://Game/Autoloads/screen_transition.tscn"
+MetaProgresion="*res://Game/Autoloads/meta_progress.tscn"
 
 [debug]
 
