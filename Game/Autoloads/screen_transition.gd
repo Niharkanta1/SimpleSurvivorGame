@@ -9,6 +9,13 @@ signal transitioned_halfway
 
 var skip_emit = false
 
+
+func transition_to_scene(scene_path: String) -> void:
+	transition()
+	await transitioned_halfway
+	get_tree().change_scene_to_file(scene_path)
+
+
 func transition() -> void:
 	$AnimationPlayer.play("default")
 	await transitioned_halfway

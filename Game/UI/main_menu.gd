@@ -7,11 +7,11 @@ extends CanvasLayer
 
 var options_scene = preload("res://Game/UI/option_menu.tscn")
 
-
 func _ready() -> void:
-	$%PlayButton.pressed.connect(_on_play_pressed)
-	$%OptionsButton.pressed.connect(_on_options_pressed)
-	$%QuitButton.pressed.connect(_on_quit_pressed)
+	%PlayButton.pressed.connect(_on_play_pressed)
+	%OptionsButton.pressed.connect(_on_options_pressed)
+	%QuitButton.pressed.connect(_on_quit_pressed)
+	%UpgradesButton.pressed.connect(_on_upgrades_pressed)
 	
 
 func transition_effect() -> void:
@@ -23,6 +23,11 @@ func _on_play_pressed() -> void:
 	transition_effect()
 	get_tree().change_scene_to_file("res://Game/main.tscn")
 	
+
+func _on_upgrades_pressed() -> void:
+	transition_effect()
+	get_tree().change_scene_to_file("res://Game/UI/meta_menu.tscn")
+
 
 func _on_options_pressed() -> void:
 	transition_effect()

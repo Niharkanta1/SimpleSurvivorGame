@@ -22,7 +22,7 @@ config/icon="res://icon.svg"
 GameEvents="*res://Game/Autoloads/game_events.tscn"
 MusicPlayer="*res://Game/Autoloads/music_player.tscn"
 ScreenTransition="*res://Game/Autoloads/screen_transition.tscn"
-MetaProgresion="*res://Game/Autoloads/meta_progress.tscn"
+MetaProgression="*res://Game/Autoloads/meta_progress.tscn"
 
 [debug]
 

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dye668by6d4oi"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://dye668by6d4oi"]
 
 [ext_resource type="Texture2D" uid="uid://biesex04lh8u0" path="res://Assets/UI/ui.png" id="1_cicu2"]
 [ext_resource type="FontFile" uid="uid://c56k8darc8klu" path="res://Assets/Font/GenericMobileSystem.ttf" id="2_e44ny"]
@@ -13,6 +13,15 @@ texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
 region_rect = Rect2(18, 2, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dcq7j"]
+texture = ExtResource("1_cicu2")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(4, 20, 8, 8)
+modulate_color = Color(0.803922, 0.498039, 0.545098, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqcih"]
 
@@ -80,6 +89,37 @@ region_rect = Rect2(0, 0, 16, 16)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0auo"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c5kj"]
+bg_color = Color(0.996078, 0.682353, 0.203922, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuiyk"]
+bg_color = Color(0.996078, 0.682353, 0.203922, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yso8k"]
+bg_color = Color(0.996078, 0.682353, 0.203922, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kn3n"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0.247059, 0.14902, 0.192157, 1)
+
 [resource]
 default_font = ExtResource("2_e44ny")
 default_font_size = 16
@@ -92,9 +132,11 @@ BlueOutlineLabel/constants/outline_size = 4
 BlueOutlineLabel/constants/shadow_offset_x = 0
 BlueOutlineLabel/constants/shadow_offset_y = 0
 Button/colors/font_color = Color(0.247059, 0.14902, 0.192157, 1)
+Button/colors/font_disabled_color = Color(0.678431, 0.678431, 0.678431, 1)
 Button/colors/font_focus_color = Color(0.247059, 0.14902, 0.192157, 1)
 Button/colors/font_hover_color = Color(0.741176, 0.423529, 0.290196, 1)
 Button/colors/font_pressed_color = Color(0.247059, 0.14902, 0.192157, 1)
+Button/styles/disabled = SubResource("StyleBoxTexture_dcq7j")
 Button/styles/focus = SubResource("StyleBoxEmpty_cqcih")
 Button/styles/hover = SubResource("StyleBoxTexture_j3jql")
 Button/styles/normal = SubResource("StyleBoxTexture_pdhxc")
@@ -107,3 +149,7 @@ HSlider/styles/slider = SubResource("StyleBoxFlat_840yf")
 Label/constants/line_spacing = 0
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_go61w")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_k0auo")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_1c5kj")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_nuiyk")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_yso8k")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_5kn3n")

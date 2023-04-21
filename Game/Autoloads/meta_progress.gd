@@ -15,7 +15,6 @@ var save_data: Dictionary = {
 
 func _ready() -> void:
 	GameEvents.experience_vial_collected.connect(_on_experience_vial_collected)
-	add_meta_upgrade(load("res://Game/MetaUpgrade/experience_gain.tres"))
 	load_save_file()
 	
 
@@ -24,11 +23,13 @@ func load_save_file() -> void:
 		return
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
 	save_data = file.get_var()
+	print("save loaded... ", save_data)
 
 
 func save() -> void:
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	file.store_var(save_data)
+	print("saving... ", save_data)
 
 
 func add_meta_upgrade(upgrade: MetaUpgrade) -> void:
@@ -36,7 +37,14 @@ func add_meta_upgrade(upgrade: MetaUpgrade) -> void:
 		save_data["meta_upgrades"][upgrade.id] = {
 			"quantity": 0
 		}
-		save_data["meta_upgrades"][upgrade.id]["quantity"] += 1
+	save_data["meta_upgrades"][upgrade.id]["quantity"] += 1
+	save()
+
+
+func get_meta_upgrade_count(upgrade_id: String) -> int:
+	if save_data["meta_upgrades"].has(upgrade_id):
+		return save_data["meta_upgrades"][upgrade_id]["quantity"]
+	return 0
 
 
 func _on_experience_vial_collected(number: float) -> void:

@@ -128,17 +128,16 @@ text = "You won!
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RestartButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_7j8h2")]
+[node name="ContinueButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_7j8h2")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Restart
+text = "Continue
 "
 
 [node name="QuitButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_7j8h2")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Quit
-"
+text = "Quit To Menu"
 
 [node name="VictoryStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_r517u")
